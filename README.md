@@ -37,7 +37,7 @@ npm run dev  # Run the frontend in development mode
 - **Frontend**: React, Vite
 
 ## Contact
-If you have any questions or issues, please contact us via email or create an issue on GitHub.
+If you have any questions or issues, please contact us via email: nguyenchuong.working@gmail.com or create an issue on GitHub.
 
 ---
 **Make sure you have Node.js installed before running the project!** 🚀
