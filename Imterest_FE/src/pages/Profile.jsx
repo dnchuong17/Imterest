@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import apiClient from '../api/apiClient';
 import { Link } from 'react-router-dom';
-import '../style/components.css'; // Style chung (nút, form, text)
+import '../style/components.css';
 
 const Profile = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [profile, setProfile] = useState(null);
     const [createdImages, setCreatedImages] = useState([]);
     const [savedImages, setSavedImages] = useState([]);
@@ -51,10 +51,7 @@ const Profile = () => {
         fetchSavedImages();
     }, []);
 
-    const handleLogout = () => {
-        logout();
-        window.location.href = '/login';
-    };
+
 
     return (
         <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '30px', textAlign: 'center' }}>
@@ -73,9 +70,6 @@ const Profile = () => {
                     <h2 style={{ marginBottom: '10px' }}>{profile.name}</h2>
                     <p style={{ color: '#555' }}>{profile.email}</p>
 
-                    <button onClick={handleLogout} className="button" style={{ background: 'red', marginTop: '20px' }}>Logout</button>
-
-                    {/* Created Images */}
                     <div style={{ marginTop: '30px' }}>
                         <h3>Images You Created</h3>
                         <div className="gallery-grid">
@@ -96,7 +90,6 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Saved Images */}
                     <div style={{ marginTop: '30px' }}>
                         <h3>Images You Saved</h3>
                         <div className="gallery-grid">

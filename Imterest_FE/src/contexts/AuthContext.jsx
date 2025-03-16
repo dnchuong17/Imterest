@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (token) {
-            localStorage.setItem('USER_LOGIN', token); // ✅ Đồng bộ với apiClient
+            localStorage.setItem('USER_LOGIN', token);
             localStorage.setItem('user', JSON.stringify(user));
         } else {
             localStorage.removeItem('USER_LOGIN');

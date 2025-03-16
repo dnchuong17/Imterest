@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import '../style/gallery.css';
 
 const PostImage = () => {
-    const { user } = useContext(AuthContext); // Lấy thông tin user từ context
-    const navigate = useNavigate(); // Điều hướng
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         title: '',
         url: ''

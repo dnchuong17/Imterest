@@ -3,22 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { AuthContext } from '../contexts/AuthContext';
 import '../style/navbar.css';
-import apiClient from '../api/apiClient'; // Import API client
+import apiClient from '../api/apiClient';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
-    const [dropdownOpen, setDropdownOpen] = useState(false); // Dropdown starts closed
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [suggestions, setSuggestions] = useState([]); // Store suggestions
-    const [isSearching, setIsSearching] = useState(false); // To show loading state
+    const [suggestions, setSuggestions] = useState([]);
+    const [isSearching, setIsSearching] = useState(false);
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
 
-    // Fetch search suggestions
+    console.log(user);
     useEffect(() => {
         const fetchSuggestions = async () => {
             if (searchTerm.trim() === '') {
-                setSuggestions([]); // Clear suggestions if search is empty
+                setSuggestions([]);
                 return;
             }
 
@@ -26,6 +26,7 @@ const Navbar = () => {
             try {
                 const res = await apiClient.get(`/images/search?title=${searchTerm}`);
                 const data = Array.isArray(res.data.data) ? res.data.data : [res.data.data];
+                setDropdownOpen(false);
                 setSuggestions(data || []);
             } catch (error) {
                 console.error('Error fetching search suggestions:', error);
@@ -36,18 +37,16 @@ const Navbar = () => {
 
         const debounceTimeout = setTimeout(fetchSuggestions, 500);
 
-        return () => clearTimeout(debounceTimeout); // Clean up timeout
+        return () => clearTimeout(debounceTimeout);
     }, [searchTerm]);
 
-    // Handle search when pressing Enter
     const handleSearch = (e) => {
         if (e.key === 'Enter') {
             navigate(`/search?query=${searchTerm}`);
-            setSearchTerm(''); // Clear the input after search
+            setSearchTerm('');
         }
     };
 
-    // Handle suggestion click
     const handleSuggestionClick = (suggestion) => {
         setSearchTerm(suggestion.title);
         setSuggestions([]);
@@ -55,22 +54,18 @@ const Navbar = () => {
         setSearchTerm('');
     };
 
-    // Handle Create Image button click
     const handleCreateImageClick = () => {
         if (!user) {
-            // If user is not logged in, redirect to login page
             navigate('/login');
         } else {
-            // If user is logged in, navigate to the create image page
             navigate('/create-image');
         }
     };
 
-    // Close dropdown if clicked outside of it
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-                setDropdownOpen(false); // Close dropdown when clicking outside
+                setDropdownOpen(false);
             }
         };
 
@@ -81,17 +76,24 @@ const Navbar = () => {
         };
     }, []);
 
-    // Toggle the dropdown on avatar click
     const handleDropdownToggle = () => {
-        setDropdownOpen((prev) => !prev); // Toggle dropdown state when clicked
+        setDropdownOpen((prev) => !prev);
+    };
+
+    const handleProfileClick = () => {
+        setDropdownOpen(false);
+        navigate('/profile');
+    };
+
+    const handleLogout = () => {
+        logout();
+        window.location.href = '/login';
     };
 
     return (
         <div className="navbar-wrapper">
             <nav className="navbar">
-                {/* Left Section */}
                 <div className="navbar-left">
-                    {/* Replacing the Home button with an image */}
                     <Link to="/" className="home-btn">
                         <img src="/logo.svg" alt="Home" className="logo-image"/>
                     </Link>
@@ -100,7 +102,6 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Search Bar */}
                 <div className="search-container">
                     <FaSearch className="search-icon"/>
                     <input
@@ -111,7 +112,6 @@ const Navbar = () => {
                         onKeyDown={handleSearch}
                     />
 
-                    {/* Suggestions List */}
                     {suggestions.length > 0 && (
                         <div className="suggestion-list">
                             {suggestions.map((suggestion, index) => (
@@ -136,8 +136,8 @@ const Navbar = () => {
                             </button>
                             {dropdownOpen && (
                                 <div className="dropdown-menu right">
-                                    <Link to="/profile">Profile</Link>
-                                    <button onClick={logout}>Logout</button>
+                                    <Link to="/profile" onClick={handleProfileClick}>Profile</Link>
+                                    <button onClick={handleLogout}>Logout</button>
                                 </div>
                             )}
                         </div>

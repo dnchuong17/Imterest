@@ -122,11 +122,21 @@ const getImageByUserId = async (req, res) => {
     }
 }
 
+const uploadImage = async (req, res) => {
+    try {
+        const file = req.file;
+        return res.json(file);
+    } catch (error) {
+        return res.send('Error', error);
+    }
+}
+
 export {
     createImage,
     getImages,
     searchImage,
     getImageDetail,
     getImageByUserId,
-    deleteImage
+    deleteImage,
+    uploadImage
 }

@@ -5,8 +5,10 @@ import {
     getImageByUserId,
     getImageDetail,
     getImages,
-    searchImage
+    searchImage,
+    uploadImage
 } from "../controller/imageController.js";
+import {Cloudinary} from "../config/cloudinary.config.js";
 const imageRoutes = express.Router();
 
 imageRoutes.post("/", createImage);
@@ -15,5 +17,6 @@ imageRoutes.get("/search",searchImage);
 imageRoutes.get("/:id", getImageDetail);
 imageRoutes.get("/user/:userId", getImageByUserId);
 imageRoutes.delete('/:id', deleteImage);
+imageRoutes.post('/upload-image', Cloudinary.single("image"), uploadImage);
 
 export default imageRoutes;

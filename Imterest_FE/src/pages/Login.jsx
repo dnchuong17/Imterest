@@ -11,44 +11,37 @@ const Login = () => {
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
     const parseJwt = (token) => {
+        console.log(token);
         try {
             const base64Url = token.split('.')[1];
             const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
             const jsonPayload = JSON.parse(atob(base64));
-            return jsonPayload;  // ✅ Trả về object trực tiếp
+            return jsonPayload;
         } catch (error) {
             console.error('Invalid token:', error);
             return null;
         }
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await loginAPI(form.email, form.password);
-            console.log("API Response:", res); // Kiểm tra response từ server
+            const token = await loginAPI(form.email, form.password);
 
-            if (res?.token) {
-                console.log("Login successful, token:", res.token);
+            if (token) {
+                const decoded = parseJwt(token);
+                console.log('Token decoded: ', decoded);
 
-                const decoded = parseJwt(res.token);
-                console.log('Decoded token:', decoded);
+                login(token, {
+                    name: decoded.payload.name,
+                    userId: decoded.payload.id
+                });
 
-                if (decoded && decoded.id) {
-                    login(res.token, {
-                        name: decoded.name,
-                        userId: decoded.id
-                    });
-
-                    alert('Login successful!');
-                    navigate('/');
-                } else {
-                    alert('Invalid token structure.');
-                }
+                alert('Login successful!');
+                navigate('/');
             } else {
-                alert(res?.message || 'Login failed.');
+                alert('Login failed.');
             }
         } catch (error) {
             console.error("Login request failed:", error);
