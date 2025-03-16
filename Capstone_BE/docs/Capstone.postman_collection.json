@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "331c33ff-37dd-4abc-8fea-adead9fda3dd",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37386912"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Chuong1\",\n    \"email\": \"chuong1@gmail.com\",\n    \"password\": \"17122004Chuong\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/auth/register",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.text();",
+									"if (token)",
+									"    pm.environment.set(\"AUTH_TOKEN\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"chuong1@gmail.com\",\n    \"password\": \"17122004Chuong\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/auth/login",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get user detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/users/2ad95c72-47aa-4430-bd47-46b75fba33b7",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users",
+								"2ad95c72-47aa-4430-bd47-46b75fba33b7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Get images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/c5a059a9-3c72-425d-9ab3-51b80a6ba113",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"images",
+								"c5a059a9-3c72-425d-9ab3-51b80a6ba113"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get image detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/64c7aa48-f197-4dfa-98f9-318691ef06db",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"images",
+								"64c7aa48-f197-4dfa-98f9-318691ef06db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get images by user Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/user/2ad95c72-47aa-4430-bd47-46b75fba33b7",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"images",
+								"user",
+								"2ad95c72-47aa-4430-bd47-46b75fba33b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Old town road\",\n  \"url\": \"https://example.com/road.jpg\",\n  \"creatorId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/search?title=",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"images",
+								"search"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Create comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"nice horse\",\n    \"userId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\",\n    \"imageId\": \"0f618236-f08b-418a-908d-7c58aca969ea\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/comments/0f618236-f08b-418a-908d-7c58aca969ea",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"comments",
+								"0f618236-f08b-418a-908d-7c58aca969ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/comments/0f618236-f08b-418a-908d-7c58aca969ea",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"comments",
+								"0f618236-f08b-418a-908d-7c58aca969ea"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Saved Image",
+			"item": [
+				{
+					"name": "Check saved image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/savedImage/64c7aa48-f197-4dfa-98f9-318691ef06db?userId=2ad95c72-47aa-4430-bd47-46b75fba33b7",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"savedImage",
+								"64c7aa48-f197-4dfa-98f9-318691ef06db"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2ad95c72-47aa-4430-bd47-46b75fba33b7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get saved images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/savedImage/user/2ad95c72-47aa-4430-bd47-46b75fba33b7",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"savedImage",
+								"user",
+								"2ad95c72-47aa-4430-bd47-46b75fba33b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"imageId\": \"64c7aa48-f197-4dfa-98f9-318691ef06db\",\n    \"userId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/savedImage",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{SERVER_IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"savedImage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

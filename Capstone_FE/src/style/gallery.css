@@ -1,0 +1,109 @@
+/* Layout Masonry kiểu Pinterest */
+.gallery-grid {
+    column-count: 4; /* 4 cột */
+    column-gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        column-count: 1;
+    }
+}
+
+/* Thẻ card hình ảnh */
+.image-card {
+    position: relative;
+    margin-bottom: 20px;
+    break-inside: avoid; /* Giữ nguyên hình */
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+}
+
+/* Hover nổi lên */
+.image-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Ảnh */
+.image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom nhẹ khi hover */
+.image-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Overlay hiện title */
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+/* Hover mới hiện title */
+.image-card:hover .image-overlay {
+    opacity: 1;
+}
+
+/* Chữ không bị dài */
+.image-overlay h3 {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+/* Hiệu ứng nút như Pinterest nếu muốn thêm */
+.image-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.image-button:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
