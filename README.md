@@ -33,7 +33,7 @@ npm run dev  # Run the frontend in development mode
 > The frontend will run in development mode.
 
 ## Technologies Used
-- **Backend**: Node.js, Express, MongoDB
+- **Backend**: Node.js, Express, PostgreSQL
 - **Frontend**: React, Vite
 
 ## Contact
