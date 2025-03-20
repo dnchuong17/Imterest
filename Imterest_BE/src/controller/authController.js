@@ -57,7 +57,7 @@ const login = async (req, res) => {
         }
         const token = createAccessToken(payload);
 
-        return res.send(token);
+        res.send(token);
     } catch (error){
         handle_error(error, res);
     }

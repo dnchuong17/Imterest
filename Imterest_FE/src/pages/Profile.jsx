@@ -51,6 +51,20 @@ const Profile = () => {
         fetchSavedImages();
     }, []);
 
+    const deleteImage = async (imageId) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this image?');
+
+        if (confirmDelete) {
+            try {
+                await apiClient.delete(`/images/${imageId}`);
+                setCreatedImages((prevImages) => prevImages.filter((img) => img.id !== imageId));
+                alert('Image deleted successfully');
+            } catch (error) {
+                alert('Failed to delete image');
+                console.error('Error deleting image:', error);
+            }
+        }
+    };
 
 
     return (
@@ -81,6 +95,11 @@ const Profile = () => {
                                         </Link>
                                         <div className="image-overlay">
                                             <h3>{img.title}</h3>
+                                            <button
+                                                onClick={() => deleteImage(img.id)}
+                                                className="delete-btn">
+                                                Delete
+                                            </button>
                                         </div>
                                     </div>
                                 ))

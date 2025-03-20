@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { login as loginAPI } from '../api/auth.js';
 import { AuthContext } from '../contexts/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
+import '../style/auth.css';
 
 const Login = () => {
     const [form, setForm] = useState({ email: '', password: '' });

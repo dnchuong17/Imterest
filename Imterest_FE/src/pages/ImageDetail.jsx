@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import apiClient from '../api/apiClient';
 import { AuthContext } from '../contexts/AuthContext';
 import '../style/imageDetail.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 const ImageDetail = () => {
     const { id } = useParams();
@@ -72,21 +74,25 @@ const ImageDetail = () => {
         <div className="image-detail-container">
             {image ? (
                 <div className="image-content">
-                    <div className="image-left">
+                    {/* Image Container */}
+                    <div className="image-container">
                         <img src={image.url} alt={image.title} />
                     </div>
 
-                    <div className="image-right">
+                    {/* Comment Container */}
+                    <div className="comment-container">
                         <h2>{image.title}</h2>
                         <p>By: {image.creator?.name || 'Unknown'}</p>
 
-                        <button
-                            className="button save-button"
-                            onClick={handleSaveImage}
-                            disabled={isSaved}
-                        >
-                            {isSaved ? 'Saved' : 'Save Image'}
-                        </button>
+                        <div className="button-container">
+                            <button
+                                className="button save-button"
+                                onClick={handleSaveImage}
+                                disabled={isSaved}
+                            >
+                                {isSaved ? 'Saved' : 'Save'}
+                            </button>
+                        </div>
 
                         {/* Comments Section */}
                         <div className="comments-section">

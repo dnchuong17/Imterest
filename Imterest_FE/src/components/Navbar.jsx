@@ -14,7 +14,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
 
-    console.log(user);
     useEffect(() => {
         const fetchSuggestions = async () => {
             if (searchTerm.trim() === '') {

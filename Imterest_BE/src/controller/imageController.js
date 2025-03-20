@@ -6,32 +6,6 @@ const { image, user } = new PrismaClient({
     log: ["query", "info", "warn", "error"]
 });
 
-const createImage = async (req, res) => {
-    try {
-        const { title, url, creatorId } = req.body;
-
-        const userExisted = await user.findUnique({
-            where: { id: creatorId }
-        });
-
-        if (!userExisted) {
-            return res.status(400).json({ message: "Creator (user) not found." });
-        }
-
-        const newImage = await image.create({
-            data: {
-                title,
-                url,
-                creatorId
-            }
-        });
-
-        send_response(req, res, "image", newImage);
-    } catch (error) {
-        handle_error(error, res);
-    }
-};
-
 const getImages = async (req,res) => {
     try {
         const result = await image.findMany();
@@ -122,14 +96,42 @@ const getImageByUserId = async (req, res) => {
     }
 }
 
-const uploadImage = async (req, res) => {
+const createImage = async (req, res) => {
     try {
-        const file = req.file;
-        return res.json(file);
+        const { title, creatorId } = req.body;
+
+        if (!creatorId) {
+            return res.status(400).json({ message: "Creator ID is missing." });
+        }
+
+        const userExisted = await user.findUnique({
+            where: { id: creatorId },
+        });
+
+        if (!userExisted) {
+            return res.status(400).json({ message: "Creator (user) not found." });
+        }
+
+        if (!req.file) {
+            return res.status(400).json({ message: "Image file is missing." });
+        }
+
+        const newImage = await image.create({
+            data: {
+                title,
+                url: req.file.path,
+                creatorId,
+            },
+        });
+
+        send_response(req, res, "image", newImage);
     } catch (error) {
-        return res.send('Error', error);
+        console.error('Error:', error);
+        handle_error(error, res);
     }
-}
+};
+
+
 
 export {
     createImage,
@@ -138,5 +140,4 @@ export {
     getImageDetail,
     getImageByUserId,
     deleteImage,
-    uploadImage
 }

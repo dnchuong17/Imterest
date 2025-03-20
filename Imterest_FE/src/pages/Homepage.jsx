@@ -10,7 +10,6 @@ const HomePage = () => {
         const fetchImages = async () => {
             try {
                 const res = await apiClient.get('/images');
-                console.log('API Response:', res.data);
                 setImages(res.data?.data || []);
             } catch (error) {
                 console.error('Error fetching images:', error);
@@ -24,7 +23,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <h1 style={{ textAlign: 'center', margin: '20px 0' }}>Gallery</h1>
+            <h1 style={{ textAlign: 'center', margin: '20px 0' }}>Explore</h1>
             <div className="gallery-grid">
                 {images.map((img) => (
                     <div key={img.id} className="image-card">
