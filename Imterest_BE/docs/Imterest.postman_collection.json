@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "331c33ff-37dd-4abc-8fea-adead9fda3dd",
-		"name": "Capstone",
+		"name": "Imterest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37386912"
 	},
@@ -59,7 +59,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"chuong1@gmail.com\",\n    \"password\": \"17122004Chuong\"\n}",
+							"raw": "{\n    \"email\": \"chuongdo172@gmail.com\",\n    \"password\": \"17122004Chuong\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -89,18 +89,14 @@
 				{
 					"name": "Get user detail",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/users/2ad95c72-47aa-4430-bd47-46b75fba33b7",
 							"protocol": "{{PROTOCOL}}",
@@ -124,16 +120,6 @@
 				{
 					"name": "Get images",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -154,19 +140,18 @@
 					"name": "Delete image",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/c5a059a9-3c72-425d-9ab3-51b80a6ba113",
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/9565743b-89a4-486e-abd3-716e22472e4e",
 							"protocol": "{{PROTOCOL}}",
 							"host": [
 								"{{SERVER_IP}}"
@@ -174,7 +159,7 @@
 							"port": "{{PORT}}",
 							"path": [
 								"images",
-								"c5a059a9-3c72-425d-9ab3-51b80a6ba113"
+								"9565743b-89a4-486e-abd3-716e22472e4e"
 							]
 						}
 					},
@@ -183,20 +168,17 @@
 				{
 					"name": "Get image detail",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
-							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/64c7aa48-f197-4dfa-98f9-318691ef06db",
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/0d9a87ee-bf4a-4831-b8b9-f62545bfbea7",
 							"protocol": "{{PROTOCOL}}",
 							"host": [
 								"{{SERVER_IP}}"
@@ -204,7 +186,7 @@
 							"port": "{{PORT}}",
 							"path": [
 								"images",
-								"64c7aa48-f197-4dfa-98f9-318691ef06db"
+								"0d9a87ee-bf4a-4831-b8b9-f62545bfbea7"
 							]
 						}
 					},
@@ -213,18 +195,14 @@
 				{
 					"name": "Get images by user Id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/user/2ad95c72-47aa-4430-bd47-46b75fba33b7",
 							"protocol": "{{PROTOCOL}}",
@@ -244,21 +222,17 @@
 				{
 					"name": "Create Image",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"Old town road\",\n  \"url\": \"https://example.com/road.jpg\",\n  \"creatorId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\"\n}",
+							"raw": "{\n  \"title\": \"Old town road\",\n  \"url\": \"https://cdn-images.vtv.vn/zoom/640_400/2019/8/6/old-town-road-video-gq-2019-051719-15650819736791834340278.jpg\",\n  \"creatorId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -282,20 +256,10 @@
 				{
 					"name": "Search Image",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/search?title=",
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/images/search?title=a",
 							"protocol": "{{PROTOCOL}}",
 							"host": [
 								"{{SERVER_IP}}"
@@ -308,7 +272,7 @@
 							"query": [
 								{
 									"key": "title",
-									"value": ""
+									"value": "a"
 								}
 							]
 						}
@@ -323,18 +287,14 @@
 				{
 					"name": "Create comment",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"text\": \"nice horse\",\n    \"userId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\",\n    \"imageId\": \"0f618236-f08b-418a-908d-7c58aca969ea\"\n}",
@@ -363,19 +323,19 @@
 					"name": "Get comment",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
-							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/comments/0f618236-f08b-418a-908d-7c58aca969ea",
+							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/comments/886e5354-7a14-4c7f-93cf-45357f7b818e",
 							"protocol": "{{PROTOCOL}}",
 							"host": [
 								"{{SERVER_IP}}"
@@ -383,7 +343,7 @@
 							"port": "{{PORT}}",
 							"path": [
 								"comments",
-								"0f618236-f08b-418a-908d-7c58aca969ea"
+								"886e5354-7a14-4c7f-93cf-45357f7b818e"
 							]
 						}
 					},
@@ -397,18 +357,14 @@
 				{
 					"name": "Check saved image",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/savedImage/64c7aa48-f197-4dfa-98f9-318691ef06db?userId=2ad95c72-47aa-4430-bd47-46b75fba33b7",
 							"protocol": "{{PROTOCOL}}",
@@ -433,18 +389,14 @@
 				{
 					"name": "Get saved images",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{PROTOCOL}}://{{SERVER_IP}}:{{PORT}}/savedImage/user/2ad95c72-47aa-4430-bd47-46b75fba33b7",
 							"protocol": "{{PROTOCOL}}",
@@ -464,18 +416,14 @@
 				{
 					"name": "Save Image",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AUTH_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"imageId\": \"64c7aa48-f197-4dfa-98f9-318691ef06db\",\n    \"userId\": \"2ad95c72-47aa-4430-bd47-46b75fba33b7\"\n}",

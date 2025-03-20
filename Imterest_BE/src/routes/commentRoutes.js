@@ -4,6 +4,6 @@ import {middlewareToken} from "../config/jwt.js";
 const commentRoutes = express.Router();
 
 commentRoutes.post('/:imageId', middlewareToken, createComment);
-commentRoutes.get('/:imageId', middlewareToken, getComments);
+commentRoutes.get('/:imageId', getComments);
 
 export default commentRoutes;
